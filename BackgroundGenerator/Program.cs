@@ -15,7 +15,8 @@ namespace BackgroundGenerator
             List<string> batchLines = new List<string>();
             string outputText = "Stop Starting & Start Finishing";
             string outputFolder = "output";
-            string bgColor = "#4A5459";
+            string bgColor = "transparent";
+            string fontColor = "white";
             int fontSize = 72;
             
 
@@ -31,7 +32,7 @@ namespace BackgroundGenerator
             foreach (string font in fonts)
             {
                 Console.WriteLine(font);
-                string line = String.Format("magick -size 1024x768 xc:\"{0}\" -font \"{1}\" -pointsize {2} -fill white -gravity center -draw \"text 0,0 '{3}'\" -trim \"{4}.png\"", bgColor, font, fontSize, outputText, Path.Combine(outputFolder, font.Remove(font.Length - 4)));
+                string line = String.Format("magick -size 1024x768 xc:{0} -font \"{1}\" -pointsize {2} -fill {3} -gravity center -draw \"text 0,0 '{4}'\" -trim \"{5}.png\"", bgColor, font, fontSize, fontColor, outputText, Path.Combine(outputFolder, font.Remove(font.Length - 4)));
                 batchLines.Add(line);
                 //Console.WriteLine(line);
             }
